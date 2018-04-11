@@ -6,7 +6,6 @@
 git clone https://github.com/DStt/rubrics-for-udacity
 cd rubrics-for-udacity
 npm install
-npm start
 ```
 
 ### Run
