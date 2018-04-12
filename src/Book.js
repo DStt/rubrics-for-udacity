@@ -39,7 +39,6 @@ class Book extends Component {
 							<div className="input-group">
 								<select className='custom-select' value={this.state.shelf}
 								        onChange={this.changeShelf}>
-									<option value="none" disabled>Select a shelf</option>
 									<option value='currentlyReading'>Currently reading</option>
 									<option value='wantToRead'>Want to read</option>
 									<option value='read'>Read</option>
