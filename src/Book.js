@@ -3,20 +3,25 @@ import {Link} from 'react-router-dom'
 
 class Book extends Component {
 
-	state = {
-		show_move: false
-	};
-
 	toggleShowMove = () => {
 		this.setState((prev) => ({
 			show_move: !prev.show_move
 		}));
 	};
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			show_move: false,
+			shelf: props.book.shelf || 'none'
+		};
+	};
+
 	changeShelf = (e) => {
-		this.setState((prev) => ({
-			show_move: false
-		}));
+		this.setState({
+			show_move: false,
+			shelf: e.target.value
+		});
 		this.props.changeShelf(this.props.book, e.target.value);
 	};
 
@@ -32,12 +37,13 @@ class Book extends Component {
 					<div className='card-footer text-center'>
 						{this.state.show_move ?
 							<div className="input-group">
-								<select className='custom-select' value={this.props.book.shelf}
+								<select className='custom-select' value={this.state.shelf}
 								        onChange={this.changeShelf}>
-									<option value=''>Select a shelf</option>
+									<option value="none" disabled>Select a shelf</option>
 									<option value='currentlyReading'>Currently reading</option>
 									<option value='wantToRead'>Want to read</option>
 									<option value='read'>Read</option>
+									<option value="none">None</option>
 								</select>
 								<span className="input-group-append">
 									<button className='btn btn-default' onClick={this.toggleShowMove}>
