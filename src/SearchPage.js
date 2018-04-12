@@ -11,14 +11,12 @@ class SearchPage extends Component {
 
 	updateQuery = (e) => {
 		let query = e.target.value;
-		this.setState({query: query});
-		this.search();
+		this.setState({query: query},this.search);
 	};
 
 	search = () => {
-		if (this.state.query === '') {
-			this.setState({books: []});
-		} else {
+		if (this.state.query !== '') {
+			console.log('-SI');
 			BooksAPI.search(this.state.query).then(result => {
 				if (result.length) {
 					result.map(book => {
@@ -48,7 +46,7 @@ class SearchPage extends Component {
 			<div className='row'>
 				<div className='col-12'>
 					<div className="form-group">
-						<input placeholder='Search' class="form-control" value={this.state.query} onChange={this.updateQuery}/>
+						<input placeholder='Search' className="form-control" value={this.state.query} onChange={this.updateQuery}/>
 					</div>
 					<div className='row'>
 						{this.state.books.length ?
